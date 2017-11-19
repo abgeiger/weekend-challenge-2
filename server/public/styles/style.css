@@ -1,0 +1,39 @@
+#displayContainerDiv {
+    margin: 20px;
+    background-color: grey;
+    padding: 10px;
+}
+
+/* .displayDiv {
+    height: 15px;
+    width: 40px;
+    background-color: grey;
+    margin: 5px;
+    float: left;
+}
+
+.operatorDisplayDiv {
+    height: 15px;
+    width: 20px;
+    background-color: grey;
+    margin: 5px;
+    float: left;
+} */
+
+/* #questionDiv {
+    height: 15px;
+    width: 50px;
+    margin: 5px;
+    background-color: blue;    
+}
+
+#answerDiv {
+    height: 15px;
+    width: 50px;
+    margin: 5px;
+    background-color: blue;
+}
+
+.floatLeft {
+    float: left;
+} */
