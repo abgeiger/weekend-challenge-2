@@ -56,48 +56,50 @@ function postButtonClick() {
             url: '/calculate',
             data: object,
             success: function(response){
-            console.log('object sent to calculate:', object);
-            console.log('response is:', response);
+                console.log('object sent to calculate:', object);
+                console.log('response is:', response);
+                retrieveData(object);
             },
             error: function(error){
             console.log('The "/calculate" ajax post request failed with error: ', error);
             }
         });
-
-        // retrieve answer to math problem with get request, run post request to add the answer to the history module, 
-        // and get complete history from history module and put in in the history screen
-        $.ajax({
-            method: 'GET',
-            url: '/calculate',
-            success: function(response) {
-                console.log('the calculated data returned is:', response);
-                answer = response.number;
-                $('.display-screen-span').append('<span> = ' + response.number + '</span>');
-                stage = 'third';
-                operation = 'none';
-                firstNumber = '';
-                secondNumber = '';
-
-                // run post request to add the answer to the history module
-                $.ajax({
-                    method: 'POST',
-                    url: '/calculate/answer',
-                    data: {answer: answer},
-                    success: function(response){
-                        console.log('object sent as answer:', object);
-                        console.log('response is:', response);
-
-                        displayHistory();
-                    },
-                    error: function(error){
-                    console.log('The "/calculate/answer" ajax post request failed with error: ', error);
-                    }
-                });
-            }
-        });
     }
 }
 
+// retrieve answer to math problem with get request, run post request to add the answer to the history module, 
+// and get complete history from history module and put in in the history screen
+function retrieveData(object) {
+    $.ajax({
+        method: 'GET',
+        url: '/calculate',
+        success: function(response) {
+            console.log('the calculated data returned is:', response);
+            answer = response.number;
+            $('.display-screen-span').append('<span> = ' + response.number + '</span>');
+            stage = 'third';
+            operation = 'none';
+            firstNumber = '';
+            secondNumber = '';
+
+            // run post request to add the answer to the history module
+            $.ajax({
+                method: 'POST',
+                url: '/calculate/answer',
+                data: {answer: answer},
+                success: function(response){
+                    console.log('object sent as answer:', object);
+                    console.log('response is:', response);
+
+                    displayHistory();
+                },
+                error: function(error){
+                console.log('The "/calculate/answer" ajax post request failed with error: ', error);
+                }
+            });
+        }
+    });
+}
 // get complete history from history module and put in in the history screen
 function displayHistory() {
     $.ajax({
