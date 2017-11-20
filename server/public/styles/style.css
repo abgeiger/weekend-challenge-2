@@ -1,39 +1,68 @@
-#displayContainerDiv {
-    margin: 20px;
-    background-color: grey;
-    padding: 10px;
-}
-
-/* .displayDiv {
-    height: 15px;
-    width: 40px;
-    background-color: grey;
-    margin: 5px;
-    float: left;
-}
-
-.operatorDisplayDiv {
-    height: 15px;
-    width: 20px;
-    background-color: grey;
-    margin: 5px;
-    float: left;
-} */
-
-/* #questionDiv {
-    height: 15px;
-    width: 50px;
-    margin: 5px;
-    background-color: blue;    
-}
-
-#answerDiv {
-    height: 15px;
-    width: 50px;
-    margin: 5px;
+.calculator-container {
     background-color: blue;
+    display: flex;
+    width: 400px;
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 4%;
+    margin: 20px;
 }
 
-.floatLeft {
-    float: left;
-} */
+.calculator-row {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: space-around;
+}
+
+.calculator-button {
+    width: 20%;
+    margin: 5px;
+    height: 30px;
+    border-radius: 5px;
+    border-width: 0;
+    background-color: grey;
+    color: white;
+}
+
+.display-screen {
+    width: 95%;
+    height: 45px;
+    opacity: 0.5;
+    background-color: black;
+    align-self: center;
+    border-radius: 5px;
+    margin: 0 0 10px 0;
+}
+
+.display-screen-span {
+    width: 100%;
+    color: white;
+}
+
+.background-hanada {
+    background-color: #044F67;
+}
+
+.background-thousand-herb {
+    background-color: #317589;
+}
+
+.background-purple {
+    background-color: #8D608C;
+}
+
+.background-light-blue {
+    background-color: #48929B;
+}
+
+.history-screen {
+    width: 95%;
+    min-height: 135px;
+    opacity: 0.2;
+    background-color: black;
+    align-self: center;
+    border-radius: 5px;
+    margin: 10px 0 0 0;
+    color: white;
+}

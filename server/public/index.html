@@ -10,29 +10,35 @@
     <script src="scripts/client.js"></script>
 </head>
 <body>
-    <h1>Calculator</h1>
-    <div id="displayContainerDiv">
-        <!-- <div id="displayInputOne" class="displayDiv"></div>
-        <div id="displayOperator" class="operatorDisplayDiv"></div>
-        <div id="displayInputTwo" class="displayDiv"></div>
-        <div class="operatorDisplayDiv">
-            <p>=</p>
+    <div class="calculator-container background-hanada">
+        <div class="display-screen">
+            <span class="display-screen-span"></span>
         </div>
-        <div id="displayAnswer" class="displayDiv"></div> -->
-        <!-- <div id="questionDiv"></div>
-        <div>
-            <p>=</p>
+        <div class="calculator-row">
+            <button class="calculator-button background-thousand-herb numberButton">7</button>
+            <button class="calculator-button background-thousand-herb numberButton">8</button>
+            <button class="calculator-button background-thousand-herb numberButton">9</button>
+            <button class="calculator-button background-purple operatorButton">/</button>
         </div>
-        <div id="answerDiv"></div> -->
+        <div class="calculator-row">
+            <button class="calculator-button background-thousand-herb numberButton">4</button>
+            <button class="calculator-button background-thousand-herb numberButton">5</button>
+            <button class="calculator-button background-thousand-herb numberButton">6</button>
+            <button class="calculator-button background-purple operatorButton">*</button>
+        </div>
+        <div class="calculator-row">
+            <button class="calculator-button background-thousand-herb numberButton">1</button>
+            <button class="calculator-button background-thousand-herb numberButton">2</button>
+            <button class="calculator-button background-thousand-herb numberButton">3</button>
+            <button class="calculator-button background-purple operatorButton">-</button>
+        </div>
+        <div class="calculator-row">
+            <button class="calculator-button background-thousand-herb background-light-blue" id="clearButton">CLEAR</button>
+            <button class="calculator-button background-thousand-herb numberButton">0</button>
+            <button class="calculator-button background-thousand-herb background-light-blue" id="postButton">=</button>
+            <button class="calculator-button background-purple operatorButton">+</button>
+        </div>
+        <div class="history-screen"></div>
     </div>
-    <input id="inputOne" type="number" placeholder="First Number">
-    <input id="inputTwo" type="number" placeholder="Second Number">
-    <button id="additionButton">+</button>
-    <button id="subtractionButton">-</button>
-    <button id="multiplicationButton">*</button>
-    <button id="divisionButton">/</button>
-    <button id="postButton">POST</button>
-    <button id="clearButton">clear</button>
-    <p id="answer"></p>
 </body>
 </html>
