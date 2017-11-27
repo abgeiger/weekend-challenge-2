@@ -3,14 +3,15 @@ var operation = 'none';
 var stage = 'first';
 var firstNumber = '';
 var secondNumber = '';
-var answer = '';
+// var answer = '';
 
 $(document).ready(readyNow);
 
 // event listeners
 function readyNow() {
     console.log('JQ sourced');
-    displayHistory();
+    retrieveData();
+    clearButtonClick();
     $('#postButton').on('click', postButtonClick);
     $('#clearButton').on('click', clearButtonClick);
     $('.operatorButton').on('click', operatorButtonClick);
@@ -58,7 +59,7 @@ function postButtonClick() {
             success: function(response){
                 console.log('object sent to calculate:', object);
                 console.log('response is:', response);
-                retrieveData(object);
+                retrieveData();
             },
             error: function(error){
             console.log('The "/calculate" ajax post request failed with error: ', error);
@@ -69,52 +70,59 @@ function postButtonClick() {
 
 // retrieve answer to math problem with get request, run post request to add the answer to the history module, 
 // and get complete history from history module and put in in the history screen
-function retrieveData(object) {
+function retrieveData() {
     $.ajax({
         method: 'GET',
         url: '/calculate',
         success: function(response) {
             console.log('the calculated data returned is:', response);
-            answer = response.number;
+            // answer = response.number;
             $('.display-screen-span').append('<span> = ' + response.number + '</span>');
+
+            var output = '';
+            for (var index = 0; index < response.history.length; index++) {
+                output += '<p>' + response[index].history.inputOne + ' ' + response[index].history.operation + ' ' + response[index].history.inputTwo + ' = ' + response[index].history.answer + '</p>';
+            }
+            $('.history-screen').html(output);
+
             stage = 'third';
             operation = 'none';
             firstNumber = '';
             secondNumber = '';
 
             // run post request to add the answer to the history module
-            $.ajax({
-                method: 'POST',
-                url: '/calculate/answer',
-                data: {answer: answer},
-                success: function(response){
-                    console.log('object sent as answer:', object);
-                    console.log('response is:', response);
+            // $.ajax({
+            //     method: 'POST',
+            //     url: '/calculate/answer',
+            //     data: {answer: answer},
+            //     success: function(response){
+            //         console.log('object sent as answer:', object);
+            //         console.log('response is:', response);
 
-                    displayHistory();
-                },
-                error: function(error){
-                console.log('The "/calculate/answer" ajax post request failed with error: ', error);
-                }
-            });
+            //         displayHistory();
+            //     },
+            //     error: function(error){
+            //     console.log('The "/calculate/answer" ajax post request failed with error: ', error);
+            //     }
+            // });
         }
     });
 }
 // get complete history from history module and put in in the history screen
-function displayHistory() {
-    $.ajax({
-        method: 'GET',
-        url: '/calculate/history',
-        success: function(response) {
-            console.log('the history array is:', response);
-            var output = '';
-            for (var index = 0; index < response.length; index++) {
-                output += '<p>' + response[index].inputOne + ' ' + response[index].operation + ' ' + response[index].inputTwo + ' = ' + response[index].answer + '</p>';
-            }
-            $('.history-screen').html(output);
-        }
-    });
-}
+// function displayHistory() {
+//     $.ajax({
+//         method: 'GET',
+//         url: '/calculate/history',
+//         success: function(response) {
+//             console.log('the history array is:', response);
+//             var output = '';
+//             for (var index = 0; index < response.length; index++) {
+//                 output += '<p>' + response[index].inputOne + ' ' + response[index].operation + ' ' + response[index].inputTwo + ' = ' + response[index].answer + '</p>';
+//             }
+//             $('.history-screen').html(output);
+//         }
+//     });
+// }
 
 // resets glabal variables, clears display-screen-span, sets stage to first, and runs a get request to clear
 //  calculateData in routes/calculate.js
